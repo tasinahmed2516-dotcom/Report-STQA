@@ -741,8 +741,16 @@
 
 ## B) Defects List
 
-| Defect ID | Class.Method Where Found | Description of Defect | Suggested Fix |
-|-----------|----------------------------|-------------------------|----------------|
-| DEF-01    |                            |                          |                |
-| DEF-02    |                            |                          |                |
-| DEF-03    |                            |                          |                |
+| Defect ID | Class.Method Where Found | Description of Defect | 
+|-----------|----------------------------|-------------------------|
+| V21       |  void setUp() {
+
+    vehicle = new Vehicle("ABC123");
+    parkingSlot = new ParkingSlot(1);
+    startTime = LocalDateTime.of(2025, 1, 1, 9, 0);
+    endTime = LocalDateTime.of(2025, 1, 1, 11, 0);
+    booking = new Booking(1, vehicle, parkingSlot, startTime, endTime, 50.0);
+}
+                          |                         |                
+| DEF-02    |                            |                         |                
+| DEF-03    |                            |                         |                
