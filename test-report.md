@@ -14,8 +14,8 @@
 
  @BeforeEach
     void setUp() {
-        vehicle = new Vehicle("ABC123"); // adjust to your actual constructor
-        parkingSlot = new ParkingSlot(1);        // adjust to your actual constructor
+        vehicle = new Vehicle("ABC123"); 
+        parkingSlot = new ParkingSlot(1);      
         startTime = LocalDateTime.of(2026, 9, 27, 9, 0);
         endTime = LocalDateTime.of(2026, 9, 27, 11, 0);
         booking = new Booking(101, vehicle, parkingSlot, startTime, endTime, 50.0);
@@ -282,7 +282,7 @@
         system = ParkingSystem.getInstance();
         system.resetForTesting();
         startTime = LocalDateTime.of(2025, 1, 1, 9, 0);
-        endTime = LocalDateTime.of(2025, 1, 1, 11, 0); // 2-hour booking
+        endTime = LocalDateTime.of(2025, 1, 1, 11, 0); 
     }
 
 
@@ -291,9 +291,9 @@
     void completingSameBookingTwiceThrowsInsufficientFundsOnSecondCall() {
         ParkingSlot slot = new ParkingSlot("R1", ParkingSlotType.REGULAR);
         Vehicle vehicle = new Vehicle(1, VehicleType.CAR, 100.0);
-        Booking booking = system.book(vehicle, slot, startTime, endTime); // amount = 20.0
+        Booking booking = system.book(vehicle, slot, startTime, endTime); 
 
-        system.completeBooking(booking); // succeeds: SYSTEM_WALLET pays slot 16.0, has 4.0 left
+        system.completeBooking(booking); 
 
 
         assertThrows(InsufficientFundsException.class,
@@ -308,9 +308,9 @@
     void cancellingSameBookingTwiceThrowsInsufficientFundsOnSecondCall() {
         ParkingSlot slot = new ParkingSlot("R1", ParkingSlotType.REGULAR);
         Vehicle vehicle = new Vehicle(1, VehicleType.CAR, 100.0);
-        Booking booking = system.book(vehicle, slot, startTime, endTime); // vehicle balance = 80.0
+        Booking booking = system.book(vehicle, slot, startTime, endTime); 
 
-        system.cancelBooking(booking); // succeeds: vehicle refunded 18.0 -> 98.0, SYSTEM_WALLET left with 2.0
+        system.cancelBooking(booking); 
 
 
         assertThrows(InsufficientFundsException.class,
@@ -341,7 +341,7 @@
     void cancellingAlreadyCompletedBookingThrowsInsufficientFunds() {
         ParkingSlot slot = new ParkingSlot("R1", ParkingSlotType.REGULAR);
         Vehicle vehicle = new Vehicle(1, VehicleType.CAR, 100.0);
-        Booking booking = system.book(vehicle, slot, startTime, endTime); // amount = 20.0
+        Booking booking = system.book(vehicle, slot, startTime, endTime); 
 
         system.completeBooking(booking);
         assertThrows(InsufficientFundsException.class,
@@ -442,14 +442,14 @@
 
 
 
-    // --- assertSame vs assertEquals: wallet reference identity ---
+
 
     @Test
     void getWalletReturnsExactSameInstancePassedIn() {
         Wallet wallet = new Wallet(30.0);
         Vehicle vehicle = new Vehicle(1, VehicleType.CAR, wallet);
 
-        // Not just equal in value — literally the same object
+        
         assertSame(wallet, vehicle.getWallet());
     }
 
@@ -458,11 +458,11 @@
         Vehicle v1 = new Vehicle(1, VehicleType.CAR, 50.0);
         Vehicle v2 = new Vehicle(2, VehicleType.CAR, 50.0);
 
-        // Same balance value, but must NOT be the same Wallet object
+        
         assertNotSame(v1.getWallet(), v2.getWallet());
     }
 
-    // --- Wallet mutation should reflect through Vehicle (shared reference) ---
+   
 
     @Test
     void deductingFromWalletDirectlyReflectsInVehicleBalance() {
@@ -484,7 +484,7 @@
         assertEquals(35.0, wallet.getBalance());
     }
 
-    // --- Two vehicles are independent, even with identical constructor args ---
+   
 
     @Test
     void twoVehiclesWithSameArgsAreIndependentObjects() {
@@ -499,20 +499,18 @@
         assertEquals(50.0, v2.getBalance());
     }
 
-    // --- No equals()/hashCode() override: identity equality only ---
+   
 
     @Test
     void vehiclesWithIdenticalFieldsAreNotEqualByDefault() {
         Vehicle v1 = new Vehicle(1, VehicleType.CAR, 50.0);
         Vehicle v2 = new Vehicle(1, VehicleType.CAR, 50.0);
 
-        // BUG / design gap: no equals() override means this uses Object.equals()
-        // (reference equality), even though the two vehicles are conceptually
-        // "the same car" by vehicleId. Worth deciding if that's intended.
+        
         assertNotEquals(v1, v2);
     }
 
-    // --- Boundary balance values ---
+   
 
     @Test
     void constructorAcceptsVeryLargeInitialBalance() {
@@ -522,12 +520,12 @@
 
     @Test
     void constructorAcceptsNegativeInitialBalanceWithoutValidation() {
-        // BUG: no check preventing a vehicle from starting with negative funds
+       
         Vehicle vehicle = new Vehicle(1, VehicleType.CAR, -50.0);
         assertEquals(-50.0, vehicle.getBalance());
     }
 
-    // --- VehicleType coverage across all enum values ---
+   
 
     @Test
     void constructorAcceptsAllVehicleTypes() {
@@ -544,7 +542,7 @@
         assertNull(vehicle.getVehicleType());
     }
 
-    // --- vehicleId boundary: zero ---
+  
 
     @Test
     void zeroVehicleIdIsAcceptedWithoutValidation() {
@@ -584,7 +582,7 @@
         assertEquals(50.0, w.getBalance(), 0.0001);
     }
 
-    // ---------- addFunds ----------
+  
 
     @Test
     void addFunds_increasesBalance() {
@@ -609,7 +607,7 @@
         assertThrows(InvalidAmountException.class, () -> wallet.addFunds(-5.0));
     }
 
-    // ---------- deductFunds ----------
+    
 
     @Test
     void deductFunds_decreasesBalance() {
@@ -648,7 +646,7 @@
         assertThrows(InsufficientFundsException.class, () -> wallet.deductFunds(1.0));
     }
 
-    // ---------- transferFunds ----------
+   
 
     @Test
     void transferFunds_movesMoneyBetweenWallets() {
@@ -689,7 +687,7 @@
         wallet.addFunds(0.1);
         wallet.addFunds(0.2);
 
-        // Trying to deduct exactly what's "supposed" to be there
+       
         assertDoesNotThrow(() -> wallet.deductFunds(0.3));
         assertEquals(0.0, wallet.getBalance());
     }
@@ -718,7 +716,7 @@
     void transferFunds_toSelf_balanceUnchanged() {
         wallet.addFunds(30.0);
         wallet.transferFunds(wallet, 10.0);
-        // deduct 10 then add 10 back to the same wallet
+        
         assertEquals(30.0, wallet.getBalance(), 0.0001);
     }
 
@@ -729,10 +727,10 @@
         wallet.addFunds(0.1);
         wallet.addFunds(0.2);
 
-        // Mathematically, balance should be exactly 0.3
+        
         System.out.println("Balance: " + wallet.getBalance());
 
-        // This assertion is likely to FAIL due to floating-point rounding
+        
         assertEquals(0.3, wallet.getBalance());
     }
 
