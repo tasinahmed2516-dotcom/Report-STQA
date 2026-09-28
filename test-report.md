@@ -975,9 +975,6 @@
 
 
 
-
-
-
     @Test
     void constructor_withWallet_setsAllFieldsCorrectly() {
         Wallet wallet = new Wallet(500.0);
@@ -1073,12 +1070,6 @@
 
 
 
-
-
-
-
-
-
     @Test
     void testAddFunds() {
         Wallet wallet = new Wallet(100.0);
@@ -1101,7 +1092,7 @@
         assertEquals(100.0, wallet.getBalance());
     }
 
-    // 5. Add negative funds -> exception
+    
     @Test
     void testAddNegativeFunds() {
         Wallet wallet = new Wallet(100.0);
@@ -1114,7 +1105,7 @@
         assertEquals(100.0, wallet.getBalance());
     }
 
-    // 6. Deduct valid amount
+  
     @Test
     void testDeductFunds() {
         Wallet wallet = new Wallet(100.0);
@@ -1124,7 +1115,7 @@
         assertEquals(60.0, wallet.getBalance());
     }
 
-    // 7. Deduct exact balance
+    
     @Test
     void testDeductExactBalance() {
         Wallet wallet = new Wallet(100.0);
@@ -1134,7 +1125,7 @@
         assertEquals(0.0, wallet.getBalance());
     }
 
-    // 8. Deduct more than balance
+    
     @Test
     void testDeductInsufficientFunds() {
         Wallet wallet = new Wallet(100.0);
@@ -1147,7 +1138,7 @@
         assertEquals(100.0, wallet.getBalance());
     }
 
-    // 9. Deduct zero
+    
     @Test
     void testDeductZeroFunds() {
         Wallet wallet = new Wallet(100.0);
@@ -1158,7 +1149,7 @@
         );
     }
 
-    // 10. Deduct negative amount
+   
     @Test
     void testDeductNegativeFunds() {
         Wallet wallet = new Wallet(100.0);
@@ -1169,7 +1160,7 @@
         );
     }
 
-    // 11. Successful transfer
+   
     @Test
     void testTransferFunds() {
         Wallet from = new Wallet(100.0);
@@ -1181,7 +1172,7 @@
         assertEquals(80.0, to.getBalance());
     }
 
-    // 12. Transfer exact balance
+    
     @Test
     void testTransferExactBalance() {
         Wallet from = new Wallet(100.0);
@@ -1193,7 +1184,7 @@
         assertEquals(150.0, to.getBalance());
     }
 
-    // 13. Transfer more than balance
+    
     @Test
     void testTransferInsufficientFunds() {
         Wallet from = new Wallet(100.0);
@@ -1208,7 +1199,7 @@
         assertEquals(50.0, to.getBalance());
     }
 
-    // 14. Transfer zero
+   
     @Test
     void testTransferZeroFunds() {
         Wallet from = new Wallet(100.0);
@@ -1220,7 +1211,7 @@
         );
     }
 
-    // 15. Transfer negative amount
+    
     @Test
     void testTransferNegativeFunds() {
         Wallet from = new Wallet(100.0);
