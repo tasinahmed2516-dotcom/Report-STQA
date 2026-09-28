@@ -1256,3 +1256,29 @@
 | V21       |  void setUp(){vehicle = new Vehicle("ABC123");       |In Vehicle.java this.someField = Integer.parseInt(plateNumber);|                
 | DEF-02    |                                                     |                
 | DEF-03    |                                                    |                
+
+
+
+
+## C) Mutant Analysis
+
+
+
+
+
+
+
+
+
+## D) Contribution
+
+
+
+
+
+
+
+
+
+
+
