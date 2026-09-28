@@ -1244,16 +1244,17 @@
 
 Defect ID: V21 
 
-Test Case:
-@BeforeEach
-void setUp() {
+            
+            Test Case:
+            @BeforeEach
+            void setUp() {
 
-    vehicle = new Vehicle("ABC123");
-    parkingSlot = new ParkingSlot(1);
-    startTime = LocalDateTime.of(2025, 1, 1, 9, 0);
-    endTime = LocalDateTime.of(2025, 1, 1, 11, 0);
-    booking = new Booking(1, vehicle, parkingSlot, startTime, endTime, 50.0);
-}
+        vehicle = new Vehicle("ABC123");
+         parkingSlot = new ParkingSlot(1);
+        startTime = LocalDateTime.of(2025, 1, 1, 9, 0);
+         endTime = LocalDateTime.of(2025, 1, 1, 11, 0);
+         booking = new Booking(1, vehicle, parkingSlot, startTime, endTime, 50.0);
+         }
 Description:
 In Vehicle.java,
 this.someField = Integer.parseInt(plateNumber);
