@@ -86,7 +86,12 @@
     }
 
 | Test Case |--- |ParkingSlotTest|
-@Test
+
+
+
+
+
+    @Test
     void testConstructor() {
         ParkingSlot slot = new ParkingSlot("A1", ParkingSlotType.COMPACT);
 
