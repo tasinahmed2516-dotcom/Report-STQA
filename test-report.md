@@ -1413,7 +1413,9 @@ java.lang.NumberFormatException: For input string: "ABC123"
 | `Vehicle.java` | 100% | 16/16 | 100% | 5/5 | 100% | 5/5 |
 | `Wallet.java` | 100% | 24/24 | 93% | 14/15 | 93% | 14/15 |
 
+## Pit Test Coverage Report
 
+![Pit Test Coverage Report](Capture%282%29.JPG)
 
 
 
