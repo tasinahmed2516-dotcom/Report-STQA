@@ -1389,9 +1389,29 @@ java.lang.NumberFormatException: For input string: "ABC123"
 
 
 
-## C) Mutant Analysis
+### C) Mutant Analysis
 
+## Overall Summary
 
+| Metric | Result |
+|---|---:|
+| Number of Classes | 5 |
+| Line Coverage | 95% |
+| Line Coverage Details | 161/170 |
+| Mutation Coverage | 81% |
+| Mutation Coverage Details | 81/100 |
+| Test Strength | 89% |
+| Test Strength Details | 81/91 |
+
+## Breakdown by Class
+
+| Class Name | Line Coverage | Line Coverage Details | Mutation Coverage | Mutation Coverage Details | Test Strength | Test Strength Details |
+|---|---:|---:|---:|---:|---:|---:|
+| `Booking.java` | 100% | 21/21 | 100% | 8/8 | 100% | 8/8 |
+| `ParkingSlot.java` | 100% | 37/37 | 84% | 31/37 | 84% | 31/37 |
+| `ParkingSystem.java` | 88% | 63/72 | 66% | 23/35 | 88% | 23/26 |
+| `Vehicle.java` | 100% | 16/16 | 100% | 5/5 | 100% | 5/5 |
+| `Wallet.java` | 100% | 24/24 | 93% | 14/15 | 93% | 14/15 |
 
 
 
