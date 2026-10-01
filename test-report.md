@@ -1357,9 +1357,9 @@
 
 ---
 
-## B) Defects List
+### B) Defects List
 
-Defect ID: V21 
+# Defect ID: V21 
 
             
             Test Case:
@@ -1381,8 +1381,37 @@ vehicle = new Vehicle("ABC123");
 java.lang.NumberFormatException: For input string: "ABC123"
 
 
+# Defect ID: W11
+
+@Test
+void deductFunds_floatingPointPrecision_bug() {
+    Wallet wallet = new Wallet();
+    wallet.addFunds(0.1);
+    wallet.addFunds(0.2);
+
+    System.out.println("Balance: " + wallet.getBalance());
+
+    assertEquals(0.3, wallet.getBalance());
+}
+
+Description:
+0.1 + 0.2 in double arithmetic equals 0.30000000000000004, not 0.3. Run this test with a plain assertEquals(0.3, wallet.getBalance()) (no delta tolerance) and it will fail — proving the bug.
 
 
+# Defect ID: W12
+@Test
+void deductFunds_exactAmount_shouldSucceed_bug() {
+    Wallet wallet = new Wallet();
+    wallet.addFunds(0.1);
+    wallet.addFunds(0.2);
+
+    // Trying to deduct exactly what's "supposed" to be there
+    assertDoesNotThrow(() -> wallet.deductFunds(0.3));
+    assertEquals(0.0, wallet.getBalance());
+}
+
+Description: 
+Here the deduction actually works fine (since 0.30000000000000004 >= 0.3 is true), but getBalance() afterward won't be exactly 0.0 — it'll be a tiny residual like 4.44E-17. That's the kind of bug that silently corrupts balances over many transactions without ever throwing an exception.
 
                                                |                
 
