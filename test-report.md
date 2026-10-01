@@ -1386,18 +1386,39 @@ java.lang.NumberFormatException: For input string: "ABC123"
 
 ### Defect ID: TC-076
 
- Testcase:
- @Test
- void testInitialBalance() {
+
+  Testcase:
+  @Test
+  void testInitialBalance() {
     Wallet wallet = new Wallet(-100.0);
 
     assertEquals(-100.0, wallet.getBalance());
- }
+  }
 this is a real bug depends on your specification. If your requirements say initial balance must be non-negative, then this is definitely a bug.
 
 
 
-### Defect ID: TC-00
+### Defect ID: TC-078
+
+
+    @Test
+    void deductFunds_exactAmount_shouldSucceed_bug() {
+    Wallet wallet = new Wallet();
+    wallet.addFunds(0.1);
+    wallet.addFunds(0.2);
+
+    
+    assertDoesNotThrow(() -> wallet.deductFunds(0.3));
+    assertEquals(0.0, wallet.getBalance());
+   }
+
+Description: 
+Here the deduction actually works fine (since 0.30000000000000004 >= 0.3 is true), but getBalance() afterward won't be exactly 0.0 — it'll be a tiny residual like 4.44E-17. That's the kind of bug that silently corrupts balances over many transactions without ever throwing an exception.
+
+
+
+
+### Defect ID: TC-079
 
       @Test
       void deductFunds_floatingPointPrecision_bug() {
@@ -1414,22 +1435,7 @@ Description:
 0.1 + 0.2 in double arithmetic equals 0.30000000000000004, not 0.3. Run this test with a plain assertEquals(0.3, wallet.getBalance()) (no delta tolerance) and it will fail — proving the bug.
 
 
-### Defect ID: W12
 
-
-    @Test
-    void deductFunds_exactAmount_shouldSucceed_bug() {
-    Wallet wallet = new Wallet();
-    wallet.addFunds(0.1);
-    wallet.addFunds(0.2);
-
-    
-    assertDoesNotThrow(() -> wallet.deductFunds(0.3));
-    assertEquals(0.0, wallet.getBalance());
-   }
-
-Description: 
-Here the deduction actually works fine (since 0.30000000000000004 >= 0.3 is true), but getBalance() afterward won't be exactly 0.0 — it'll be a tiny residual like 4.44E-17. That's the kind of bug that silently corrupts balances over many transactions without ever throwing an exception.
 
                                                |                
 
