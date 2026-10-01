@@ -1384,6 +1384,7 @@ java.lang.NumberFormatException: For input string: "ABC123"
 
 
 
+
 ### Defect ID: TC-076
 
 
@@ -1395,6 +1396,8 @@ java.lang.NumberFormatException: For input string: "ABC123"
     assertEquals(-100.0, wallet.getBalance());
   }
 this is a real bug depends on your specification. If your requirements say initial balance must be non-negative, then this is definitely a bug.
+
+
 
 
 
