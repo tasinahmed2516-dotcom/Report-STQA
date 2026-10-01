@@ -1415,7 +1415,7 @@ java.lang.NumberFormatException: For input string: "ABC123"
 
 ## Pit Test Coverage Report
 
-![Pit Test Coverage Report](Capture%282%29.JPG)
+![Pit Test Coverage Report](Capture.JPG)
 
 
 
