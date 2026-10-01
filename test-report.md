@@ -1394,7 +1394,7 @@ booking.completeBooking();
 
 booking.cancelBooking();  
 
-Both methods set the status without checking the current one. A completed booking can be cancelled, and a cancelled booking can be completed. A booking can also be completed or cancelled twice.
+###Both methods set the status without checking the current one. A completed booking can be cancelled, and a cancelled booking can be completed. A booking can also be completed or cancelled twice.
 
 
 
