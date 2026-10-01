@@ -1357,9 +1357,9 @@
 
 ---
 
-### B) Defects List
+# B) Defects List
 
-# Defect ID: V21 
+### Defect ID: V21 
 
             
             Test Case:
@@ -1381,7 +1381,7 @@ vehicle = new Vehicle("ABC123");
 java.lang.NumberFormatException: For input string: "ABC123"
 
 
-# Defect ID: W11
+### Defect ID: W11
 
 @Test
 void deductFunds_floatingPointPrecision_bug() {
@@ -1398,14 +1398,14 @@ Description:
 0.1 + 0.2 in double arithmetic equals 0.30000000000000004, not 0.3. Run this test with a plain assertEquals(0.3, wallet.getBalance()) (no delta tolerance) and it will fail — proving the bug.
 
 
-# Defect ID: W12
+### Defect ID: W12
 @Test
 void deductFunds_exactAmount_shouldSucceed_bug() {
     Wallet wallet = new Wallet();
     wallet.addFunds(0.1);
     wallet.addFunds(0.2);
 
-    // Trying to deduct exactly what's "supposed" to be there
+    
     assertDoesNotThrow(() -> wallet.deductFunds(0.3));
     assertEquals(0.0, wallet.getBalance());
 }
@@ -1418,7 +1418,7 @@ Here the deduction actually works fine (since 0.30000000000000004 >= 0.3 is true
 
 
 
-### C) Mutant Analysis
+# C) Mutant Analysis
 
 ## Overall Summary
 
