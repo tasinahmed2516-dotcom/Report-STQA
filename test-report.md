@@ -1389,16 +1389,14 @@ java.lang.NumberFormatException: For input string: "ABC123"
 
 
    
-   Testcase:
-   
-   @Test
-   
-   void testInitialBalance() {
-   Wallet wallet = new Wallet(-100.0);
-   assertEquals(-100.0, wallet.getBalance());
-    }
-    
+  @Test
+    void testInitialBalance() {
+    Wallet wallet = new Wallet(-100.0);
+
+    assertEquals(-100.0, wallet.getBalance());
+}
 this is a real bug depends on your specification. If your requirements say initial balance must be non-negative, then this is definitely a bug.
+
 
 
 
