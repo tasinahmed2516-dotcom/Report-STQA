@@ -1383,6 +1383,19 @@ java.lang.NumberFormatException: For input string: "ABC123"
 
 
 
+### Defect ID: Tc-004 
+
+
+booking.completeBooking();
+
+
+
+### Defect ID: Tc-005 
+
+booking.cancelBooking();  
+
+Both methods set the status without checking the current one. A completed booking can be cancelled, and a cancelled booking can be completed. A booking can also be completed or cancelled twice.
+
 
 
 ### Defect ID: TC-076
