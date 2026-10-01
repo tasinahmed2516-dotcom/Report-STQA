@@ -1,13 +1,13 @@
-### Software Testing Report
+# Software Testing Report
 
-### 0) Member
+## 0) Member
 
 * **Student ID:** 0112310034
 * **Name:** Alif Hasan Tasin
 
 ---
 
-### A) Test Case List
+## A) Test Case List
 
 
 
@@ -1359,7 +1359,7 @@
 
 # B) Defects List
 
-### Defect ID: V21 
+### Defect ID: Tc-001 
 
             
             Test Case:
@@ -1383,15 +1383,15 @@ java.lang.NumberFormatException: For input string: "ABC123"
 
 ### Defect ID: W11
 
-@Test
-void deductFunds_floatingPointPrecision_bug() {
-    Wallet wallet = new Wallet();
-    wallet.addFunds(0.1);
-    wallet.addFunds(0.2);
+      @Test
+      void deductFunds_floatingPointPrecision_bug() {
+      Wallet wallet = new Wallet();
+      wallet.addFunds(0.1);
+      wallet.addFunds(0.2);
 
-    System.out.println("Balance: " + wallet.getBalance());
+      System.out.println("Balance: " + wallet.getBalance());
 
-    assertEquals(0.3, wallet.getBalance());
+       assertEquals(0.3, wallet.getBalance());
 }
 
 Description:
@@ -1399,8 +1399,11 @@ Description:
 
 
 ### Defect ID: W12
-@Test
-void deductFunds_exactAmount_shouldSucceed_bug() {
+
+
+
+   @Test
+    void deductFunds_exactAmount_shouldSucceed_bug() {
     Wallet wallet = new Wallet();
     wallet.addFunds(0.1);
     wallet.addFunds(0.2);
@@ -1450,7 +1453,7 @@ Here the deduction actually works fine (since 0.30000000000000004 >= 0.3 is true
 
 
 
-### D) Contribution
+# D) Contribution
 
 My contribution was focused on unit testing. My faculty designed and i am implement test cases for the major classes of the parking management system, covering functional, exception, boundary, and negative scenarios. I also performed PIT mutation testing to evaluate test effectiveness and documented the test cases and coverage results.
 
