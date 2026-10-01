@@ -1365,7 +1365,7 @@
 new Booking(1, vehicle, slot, start, end, -50.0);
 new Booking(1, vehicle, slot, start, end, Double.NaN);
 
-###A negative amount means the customer is paid to park. NaN and infinity break totals, comparisons and reports, because NaN is not equal to anything, including itself. 
+#### A negative amount means the customer is paid to park. NaN and infinity break totals, comparisons and reports, because NaN is not equal to anything, including itself. 
             
 
 ### Defect ID: Tc-002
@@ -1373,7 +1373,7 @@ new Booking(1, vehicle, slot, start, end, Double.NaN);
 endTime = LocalDateTime.of(2025, 1, 1, 8, 0);   
 new Booking(1, vehicle, parkingSlot, startTime, endTime, 50.0);  
 
-###A parking session cannot end before it starts, and a zero-length session makes no sense. This produces a negative or zero duration, which leads to wrong billing and can cause overlapping or impossible slot schedules.
+#### A parking session cannot end before it starts, and a zero-length session makes no sense. This produces a negative or zero duration, which leads to wrong billing and can cause overlapping or impossible slot schedules.
 
 
 ### Defect ID: Tc-004 
@@ -1387,7 +1387,7 @@ booking.completeBooking();
 
 booking.cancelBooking();  
 
-### Both methods set the status without checking the current one. A completed booking can be cancelled, and a cancelled booking can be completed. A booking can also be completed or cancelled twice.
+#### Both methods set the status without checking the current one. A completed booking can be cancelled, and a cancelled booking can be completed. A booking can also be completed or cancelled twice.
 
 
 
