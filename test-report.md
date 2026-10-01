@@ -1388,7 +1388,10 @@ java.lang.NumberFormatException: For input string: "ABC123"
 ### Defect ID: TC-076
 
 
-  Testcase:
+   
+   
+   
+Testcase:
   @Test
   void testInitialBalance() {
     Wallet wallet = new Wallet(-100.0);
