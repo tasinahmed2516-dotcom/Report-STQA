@@ -1359,7 +1359,7 @@
 
 # B) Defects List
 
-### Defect ID: Tc-001 
+### Defect ID: C-001 
 
           
 new Booking(1, vehicle, slot, start, end, -50.0);
@@ -1368,7 +1368,7 @@ new Booking(1, vehicle, slot, start, end, Double.NaN);
  A negative amount means the customer is paid to park. NaN and infinity break totals, comparisons and reports, because NaN is not equal to anything, including itself. 
             
 
-### Defect ID: Tc-002
+### Defect ID: C-002
 
 endTime = LocalDateTime.of(2025, 1, 1, 8, 0);   
 new Booking(1, vehicle, parkingSlot, startTime, endTime, 50.0);  
@@ -1376,14 +1376,14 @@ new Booking(1, vehicle, parkingSlot, startTime, endTime, 50.0);
  A parking session cannot end before it starts, and a zero-length session makes no sense. This produces a negative or zero duration, which leads to wrong billing and can cause overlapping or impossible slot schedules.
 
 
-### Defect ID: Tc-004 
+### Defect ID: C-004 
 
 
 booking.completeBooking();
 
 
 
-### Defect ID: Tc-005 
+### Defect ID: C-005 
 
 booking.cancelBooking();  
 
@@ -1391,7 +1391,7 @@ booking.cancelBooking();
 
 
 
-### Defect ID: TC-076
+### Defect ID: C-076
 
 
    
@@ -1412,7 +1412,7 @@ this is a real bug depends on your specification. If your requirements say initi
 
 
 
-### Defect ID: TC-078
+### Defect ID: C-078
 
 
     @Test
@@ -1432,7 +1432,7 @@ Here the deduction actually works fine (since 0.30000000000000004 >= 0.3 is true
 
 
 
-### Defect ID: TC-079
+### Defect ID: C-079
 
       @Test
       void deductFunds_floatingPointPrecision_bug() {
