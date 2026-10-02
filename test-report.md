@@ -223,6 +223,22 @@ One booking can be refunded and also paid to the slot, so the system pays out mo
 
 
 
+
+### Defect ID: C-61
+
+
+system.setPARKING_RATE_PER_HOUR(-10.0);
+system.book(car, slot, start, end);   
+system.setPARKING_RATE_PER_HOUR(0);   
+system.setPARKING_RATE_PER_HOUR(Double.NaN);
+
+
+A negative rate gives a negative amount, which makes the "payment" move money from the system to the customer. NaN breaks every total. The original Booking also accepts negative amounts, so nothing stops it. The other setters (setVehicles(null), setBookings(null), setSYSTEM_WALLET(null)) fail later with a NullPointerException, far from the cause.
+
+
+
+
+
 ### Defect ID: C-076
 
 
