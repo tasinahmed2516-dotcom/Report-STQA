@@ -1393,9 +1393,12 @@ booking.cancelBooking();
 ### Defect ID: C-012
 
  Booking b = new Booking(1, vehicle, slot, at(10), at(12), 50.0);
+ 
  slot.getBookings().add(b);
+ 
  b.cancelBooking();
- slot.isAvailable(at(10), at(12));   // returns false, should be true
+ 
+ slot.isAvailable(at(10), at(12));   
 
 The loop checks only the times of each booking. It never looks at bookingStatus.
 
