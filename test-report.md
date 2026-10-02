@@ -233,9 +233,31 @@ system.setPARKING_RATE_PER_HOUR(0);
 system.setPARKING_RATE_PER_HOUR(Double.NaN);
 
 
-A negative rate gives a negative amount, which makes the "payment" move money from the system to the customer. NaN breaks every total. The original Booking also accepts negative amounts, so nothing stops it. The other setters (setVehicles(null), setBookings(null), setSYSTEM_WALLET(null)) fail later with a NullPointerException, far from the cause.
+ The  Booking also accepts negative amounts, so nothing stops it. The other setters (setVehicles(null), setBookings(null), setSYSTEM_WALLET(null)) fail later with a NullPointerException, far from the cause.
 
 
+
+### Defect ID: C-69
+
+
+
+Vehicle v = new Vehicle(101, VehicleType.CAR,  null);  
+v.getBalance();    
+v.toString();      
+
+Description:Null wallet is accepted.
+
+
+
+### Defect ID: C-68
+
+
+Vehicle v = new Vehicle(1, null, 100.0);       
+v.toString();                                  
+system.getAvailableParkingSlots(v, start, end); 
+
+
+Description:Null vehicle type is accepted.
 
 
 
@@ -259,6 +281,17 @@ this is a real bug depends on your specification. If your requirements say initi
 
 
 
+
+
+
+
+
+
+
+
+
+
+
 ### Defect ID: C-078
 
 
@@ -274,7 +307,7 @@ this is a real bug depends on your specification. If your requirements say initi
    }
 
 Description: 
-Here the deduction actually works fine (since 0.30000000000000004 >= 0.3 is true), but getBalance() afterward won't be exactly 0.0 — it'll be a tiny residual like 4.44E-17. That's the kind of bug that silently corrupts balances over many transactions without ever throwing an exception.
+Here the deduction actually works fine (since 0.30000000000000004 >= 0.3 is true), but getBalance() afterward won't be exactly 0.0 — it'll be a tiny residual like 4.44E-17. 
 
 
 
