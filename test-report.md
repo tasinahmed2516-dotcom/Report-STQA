@@ -197,9 +197,29 @@ book()
 happens: toHours() cuts off the remainder.
 
 
+### Defect ID: C-49
+
+Vehicle truck = new Vehicle(1, VehicleType.TRUCK, 500.0);
+system.addParkingSlot(new ParkingSlot("L01", ParkingSlotType.LARGE));
+system.getAvailableParkingSlots(truck, start, end);   
+system.book(truck, largeSlot, start, end);            
+
+getVehicleTypeRate() has a TRUCK rate (3.0), but ParkingSlot.isCompatible() has no TRUCK case.
 
 
+### Defect ID: C-50
 
+Booking b = system.book(car, slot, start, end);
+
+system.cancelBooking(b);
+
+### Defect ID: C-51
+
+Booking b = system.book(car, slot, start, end);
+
+system.completeBooking(b);
+
+One booking can be refunded and also paid to the slot, so the system pays out more than it received. It is the money version of Booking bug 1. If Booking is fixed, booking.completeBooking() throws before any transfer, but ParkingSystem should not depend on that.
 
 
 
