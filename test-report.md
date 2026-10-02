@@ -1416,7 +1416,7 @@ The loop checks only the times of each booking. It never looks at bookingStatus.
 
  startTime and endTime are never validated. (isAvailable() and isCompatible())
 
-### Defect ID: C-0
+### Defect ID: C-010
 
          slot.deactivate();
          slot.isAvailable(at(10), at(12));   
