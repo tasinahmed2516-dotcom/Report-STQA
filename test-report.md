@@ -1390,6 +1390,23 @@ booking.cancelBooking();
  Both methods set the status without checking the current one. A completed booking can be cancelled, and a cancelled booking can be completed. A booking can also be completed or cancelled twice.
 
 
+### Defect ID: C-012
+
+ Booking b = new Booking(1, vehicle, slot, at(10), at(12), 50.0);
+ slot.getBookings().add(b);
+ b.cancelBooking();
+ slot.isAvailable(at(10), at(12));   // returns false, should be true
+
+The loop checks only the times of each booking. It never looks at bookingStatus.
+
+
+
+
+
+
+
+
+
 
 ### Defect ID: C-076
 
