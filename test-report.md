@@ -260,6 +260,19 @@ system.getAvailableParkingSlots(v, start, end);
 Description:Null vehicle type is accepted.
 
 
+### Defect ID: C-71
+
+
+new Vehicle(0, VehicleType.CAR, 100.0);
+new Vehicle(-5, VehicleType.CAR, 100.0);
+
+
+Description:Zero or negative vehicle ID is accepted
+
+
+
+
+
 
 ### Defect ID: C-076
 
