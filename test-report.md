@@ -219,7 +219,7 @@ Booking b = system.book(car, slot, start, end);
 
 system.completeBooking(b);
 
-One booking can be refunded and also paid to the slot, so the system pays out more than it received. It is the money version of Booking bug 1. If Booking is fixed, booking.completeBooking() throws before any transfer, but ParkingSystem should not depend on that.
+One booking can be refunded and also paid to the slot, so the system pays out more than it received. It is the money version of Booking bug . If Booking is fixed, booking.completeBooking() throws before any transfer, but ParkingSystem should not depend on that.
 
 
 
