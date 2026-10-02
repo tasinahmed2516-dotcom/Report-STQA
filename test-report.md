@@ -1400,12 +1400,21 @@ booking.cancelBooking();
  
  slot.isAvailable(at(10), at(12));   
 
-The loop checks only the times of each booking. It never looks at bookingStatus.
+The loop checks only the times of each booking. It never looks at bookingStatus.(isAvailable())
+
+### Defect ID: C-018
 
 
+slot.isAvailable(at(12), at(10));
+
+slot.isAvailable(at(11), at(11));   
 
 
+slot.isAvailable(null, null);     
 
+slot.isAvailable(null, null);      
+
+ startTime and endTime are never validated. (isAvailable() and isCompatible())
 
 
 
