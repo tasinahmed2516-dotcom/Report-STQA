@@ -278,26 +278,38 @@ Description:Zero or negative vehicle ID is accepted
 
 
    
-   @Test
+@Test
   
-    void testInitialBalance() {
-    
-    Wallet wallet = new Wallet(-100.0);
-
-    assertEquals(-100.0, wallet.getBalance());
-    }
+void testInitialBalance() {
+Wallet wallet = new Wallet(-100.0);
+assertEquals(-100.0, wallet.getBalance());
+}
 
 this is a real bug depends on your specification. If your requirements say initial balance must be non-negative, then this is definitely a bug.
 
 
+### Defect ID: C-074
+
+Wallet w = new Wallet(100.0);
+w.addFunds(Double.POSITIVE_INFINITY);                
+
+Wallet a = new Wallet(Double.MAX_VALUE);
+Wallet b = new Wallet(Double.MAX_VALUE);
+a.transferFunds(b, Double.MAX_VALUE);                 
+
+Description:Infinite amounts and overflow are accepted
 
 
 
 
 
+### Defect ID: C-082
 
+Wallet from = new Wallet(100.0);
+from.transferFunds(null, 30.0);   
+from.getBalance();                
 
-
+Description:transferFunds(null, amount) destroys money
 
 
 
@@ -307,17 +319,16 @@ this is a real bug depends on your specification. If your requirements say initi
 
 ### Defect ID: C-078
 
-
-    @Test
-    void deductFunds_exactAmount_shouldSucceed_bug() {
-    Wallet wallet = new Wallet();
-    wallet.addFunds(0.1);
-    wallet.addFunds(0.2);
+ @Test
+void deductFunds_exactAmount_shouldSucceed_bug() {
+ Wallet wallet = new Wallet();
+wallet.addFunds(0.1);
+wallet.addFunds(0.2);
 
     
-    assertDoesNotThrow(() -> wallet.deductFunds(0.3));
-    assertEquals(0.0, wallet.getBalance());
-   }
+assertDoesNotThrow(() -> wallet.deductFunds(0.3));
+assertEquals(0.0, wallet.getBalance());
+}
 
 Description: 
 Here the deduction actually works fine (since 0.30000000000000004 >= 0.3 is true), but getBalance() afterward won't be exactly 0.0 — it'll be a tiny residual like 4.44E-17. 
@@ -327,16 +338,16 @@ Here the deduction actually works fine (since 0.30000000000000004 >= 0.3 is true
 
 ### Defect ID: C-079
 
-      @Test
-      void deductFunds_floatingPointPrecision_bug() {
-      Wallet wallet = new Wallet();
-      wallet.addFunds(0.1);
-      wallet.addFunds(0.2);
+@Test
+void deductFunds_floatingPointPrecision_bug() {
+Wallet wallet = new Wallet();
+wallet.addFunds(0.1);
+wallet.addFunds(0.2);
 
-      System.out.println("Balance: " + wallet.getBalance());
+System.out.println("Balance: " + wallet.getBalance());
 
-       assertEquals(0.3, wallet.getBalance());
-     } 
+assertEquals(0.3, wallet.getBalance());
+} 
 
 Description:
 0.1 + 0.2 in double arithmetic equals 0.30000000000000004, not 0.3. Run this test with a plain assertEquals(0.3, wallet.getBalance()) (no delta tolerance) and it will fail — proving the bug.
