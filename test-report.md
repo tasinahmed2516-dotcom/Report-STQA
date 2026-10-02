@@ -116,16 +116,16 @@
 ### Defect ID: C-001 
 
           
-           new Booking(1, vehicle, slot, start, end, -50.0);
-           new Booking(1, vehicle, slot, start, end, Double.NaN);
+new Booking(1, vehicle, slot, start, end, -50.0);
+new Booking(1, vehicle, slot, start, end, Double.NaN);
 
  A negative amount means the customer is paid to park. NaN and infinity break totals, comparisons and reports, because NaN is not equal to anything, including itself. 
             
 
 ### Defect ID: C-002
 
-                 endTime = LocalDateTime.of(2025, 1, 1, 8, 0);   
-                 new Booking(1, vehicle, parkingSlot, startTime, endTime, 50.0);  
+endTime = LocalDateTime.of(2025, 1, 1, 8, 0);   
+new Booking(1, vehicle, parkingSlot, startTime, endTime, 50.0);  
 
  A parking session cannot end before it starts, and a zero-length session makes no sense. This produces a negative or zero duration, which leads to wrong billing and can cause overlapping or impossible slot schedules.
 
@@ -133,59 +133,70 @@
 ### Defect ID: C-004 
 
 
-           booking.completeBooking();
+booking.completeBooking();
 
 
 
 ### Defect ID: C-005 
 
-            booking.cancelBooking();  
+booking.cancelBooking();  
 
  Both methods set the status without checking the current one. A completed booking can be cancelled, and a cancelled booking can be completed. A booking can also be completed or cancelled twice.
 
 
 ### Defect ID: C-012
 
-       Booking b = new Booking(1, vehicle, slot, at(10), at(12), 50.0);
+Booking b = new Booking(1, vehicle, slot, at(10), at(12), 50.0);
  
-       slot.getBookings().add(b);
+slot.getBookings().add(b);
  
-        b.cancelBooking();
+b.cancelBooking();
  
-        slot.isAvailable(at(10), at(12));   
+slot.isAvailable(at(10), at(12));   
 
 The loop checks only the times of each booking. It never looks at bookingStatus.(isAvailable())
 
 ### Defect ID: C-018
 
 
-         slot.isAvailable(at(12), at(10));
+slot.isAvailable(at(12), at(10));
 
-         slot.isAvailable(at(11), at(11));   
+slot.isAvailable(at(11), at(11));   
 
 
-          slot.isAvailable(null, null);     
+slot.isAvailable(null, null);     
 
-          slot.isAvailable(null, null);      
+slot.isAvailable(null, null);      
 
  startTime and endTime are never validated. (isAvailable() and isCompatible())
 
 ### Defect ID: C-010
 
-         slot.deactivate();
-         slot.isAvailable(at(10), at(12));   
+slot.deactivate();
+slot.isAvailable(at(10), at(12));   
          
 The two public methods disagree. A caller that uses isAvailable() directly can book a deactivated slot                            
 
 ### Defect ID: C-09
 
 
-              new ParkingSlot(null, ParkingSlotType.COMPACT);
-              new ParkingSlot("  ", ParkingSlotType.COMPACT);
-              new ParkingSlot("A1", null);
+new ParkingSlot(null, ParkingSlotType.COMPACT);
+new ParkingSlot("  ", ParkingSlotType.COMPACT);
+new ParkingSlot("A1", null);
 
 
 slotId and slotType are not validated, and the fields are not final
+
+
+### Defect ID: C-47
+          
+book()
+
+ double hours = java.time.Duration.between(startTime, endTime).toHours();
+
+happens: toHours() cuts off the remainder.
+
+
 
 
 
@@ -196,8 +207,7 @@ slotId and slotType are not validated, and the fields are not final
 
 
    
-  
-    @Test
+   @Test
   
     void testInitialBalance() {
     
