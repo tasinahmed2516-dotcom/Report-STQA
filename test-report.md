@@ -1423,11 +1423,15 @@ The loop checks only the times of each booking. It never looks at bookingStatus.
          
 The two public methods disagree. A caller that uses isAvailable() directly can book a deactivated slot                            
 
+### Defect ID: C-09
 
 
+              new ParkingSlot(null, ParkingSlotType.COMPACT);
+              new ParkingSlot("  ", ParkingSlotType.COMPACT);
+              new ParkingSlot("A1", null);
 
 
-
+slotId and slotType are not validated, and the fields are not final
 
 
 
